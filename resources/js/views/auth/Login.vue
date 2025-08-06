@@ -79,7 +79,15 @@
 </template>
 
 <script setup>
+/* All Library Import */
+import { useAuthStore } from '@/stores/auth';
+/* All Instance */
+const store = useAuthStore();
+/* All Variables */
 
+/* All Methods */
+
+/* All Hooks and Computed */
 </script>
 
 <style scoped></style>

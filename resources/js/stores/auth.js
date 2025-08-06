@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    name: 'Md. Mirazul Islam'
+    name: 'Miraz'
   }),
   getters: {
     

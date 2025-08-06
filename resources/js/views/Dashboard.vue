@@ -1,15 +1,14 @@
 <template>
  
     <div class="container-fluid">
-      Dashboard -
-      {{ store.name }}
+      Dashboard 
+     
     </div>
  
 </template>
 
 <script setup>
-import { useAuthStore } from '../stores/auth';
-const store = useAuthStore();
+
 </script>
 
 <style scoped>
