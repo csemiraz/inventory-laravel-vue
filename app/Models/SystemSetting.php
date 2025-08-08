@@ -1,14 +1,14 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Models;
 
-{{ factoryImport }}
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class {{ class }} extends Model
+class SystemSetting extends Model
 {
+    /** @use HasFactory<\Database\Factories\SystemSettingFactory> */
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
