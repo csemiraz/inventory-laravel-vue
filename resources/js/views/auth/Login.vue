@@ -29,19 +29,20 @@
                                         <h5 class="mb-0">Welcome Back !</h5>
                                         <p class="text-muted mt-2">Sign in to continue to Inventory.</p>
                                     </div>
-                                    <form class="mt-4 pt-2">
+                                    <vee-form :validation-schema="schema" @submit="login" class="mt-4 pt-2">
                                         <div class="form-floating form-floating-custom mb-3">
-                                            <input type="text" class="form-control" id="input-username"
-                                                placeholder="Enter User Name">
+                                            <vee-field type="text" class="form-control" id="input-username"
+                                                placeholder="Enter User Name" name="email" v-model="loginForm.email" />
                                             <label for="input-username">Username</label>
                                             <div class="form-floating-icon">
                                                 <i class="uil uil-users-alt"></i>
                                             </div>
+                                            <ErrorMessage class="text-danger" name="email" />
                                         </div>
 
                                         <div class="form-floating form-floating-custom mb-3 auth-pass-inputgroup">
-                                            <input type="password" class="form-control" id="password-input"
-                                                placeholder="Enter Password">
+                                            <vee-field type="password" class="form-control" id="password-input"
+                                                placeholder="Enter Password" name="password" v-model="loginForm.password" />
                                             <button type="button"
                                                 class="btn btn-link position-absolute h-100 end-0 top-0"
                                                 id="password-addon">
@@ -51,10 +52,11 @@
                                             <div class="form-floating-icon">
                                                 <i class="uil uil-padlock"></i>
                                             </div>
+                                            <ErrorMessage class="text-danger" name="passsword" />
                                         </div>
 
                                         <div class="form-check form-check-primary font-size-16 py-1">
-                                            <input class="form-check-input" type="checkbox" id="remember-check">
+                                            <vee-field class="form-check-input" type="checkbox" id="remember-check" name="remember" />
 
                                             <label class="form-check-label font-size-14" for="remember-check">
                                                 Remember me
@@ -64,7 +66,7 @@
                                         <div class="mt-3">
                                             <button class="btn btn-primary w-100" type="submit">Log In</button>
                                         </div>
-                                    </form><!-- end form -->
+                                    </vee-form><!-- end form -->
                                 </div>
                             </div>
                         </div>
@@ -80,12 +82,52 @@
 
 <script setup>
 /* All Library Import */
+import { ref, reactive, inject } from 'vue';
 import { useAuthStore } from '@/stores/auth';
+import { useRoute, useRouter } from 'vue-router';
+import { ErrorMessage } from 'vee-validate';
+
+
 /* All Instance */
-const store = useAuthStore();
+const authStore = useAuthStore();
+const router = useRouter();
+const swal = inject('$swal');
+
+
 /* All Variables */
+const loginForm = reactive({
+    email: null,
+    password: null,
+});
+
+const schema = reactive({
+    email: 'required|email',
+    password: 'required|min:4|max:25'
+});
+
+
 
 /* All Methods */
+const login = () => {
+    authStore.login(loginForm, (status) => {
+        if(status === 'success') {
+            swal({
+                icon: 'success',
+                title: authStore.message,
+                timer: 2000
+            });
+            router.push({ name: 'dashboard' })
+        } else {
+            swal({
+                icon: 'error',
+                title: authStore.message,
+                timer: 2000
+            })
+            router.push({name: 'login'})
+        }
+    })
+}
+
 
 /* All Hooks and Computed */
 </script>

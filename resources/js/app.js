@@ -8,8 +8,8 @@ import './assets/css/bootstrap.min.css';
 import './assets/css/icons.min.css'
 import './assets/css/app.min.css'
 
-import VeeValidatePlugin from './utils.validation';
-import VueSweetalert2 from 'vue-sweetalert2';
+import VeeValidatePlugin from './utils/validation';
+import VueSweetAlert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 
