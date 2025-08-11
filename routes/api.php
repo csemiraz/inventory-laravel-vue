@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
@@ -14,4 +15,8 @@ Route::middleware('auth:sanctum')->group(function() {
 });
     /* System_Setting Route */
     Route::apiResource('/system-settings', SystemSettingController::class)->only('index', 'update');
+    /* Category Routes */
+    Route::get('/categories/all', [CategoryController::class, 'allCategory']);
+    Route::get('/categories/change-status/{id}', [CategoryController::class, 'status']);
+    Route::apiResource('/categories', CategoryController::class);
 });

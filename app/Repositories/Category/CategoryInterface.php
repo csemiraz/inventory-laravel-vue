@@ -1,11 +1,11 @@
 <?php 
 
-namespace App\Repositories\SystemSetting;
+namespace App\Repositories\Category;
 
-interface SystemSettingInterface
+interface CategoryInterface
 {
   public function all();
-  public function allPaginate($per_page);
+  public function allPaginate($perPage);
   public function store($data);
   public function show($id);
   public function update($data, $id);
